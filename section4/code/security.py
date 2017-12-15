@@ -14,7 +14,7 @@ def authenticate(username, password):
     if user and safe_str_cmp(user.password, password):
         return user
 
-
 def identity(payload):  # payload is the content of the JWT token
+    print(payload)
     user_id = payload['identity']
     return userid_mapping.get(user_id, None)

@@ -17,11 +17,11 @@ items = []
 class Item(Resource):
     @jwt_required()
     def get(self, name):
-        item = next(filter(lambda x: x['name'] == name, items), default=None)
+        item = next(filter(lambda x: x['name'] == name, items), None)
         return {'item': item}, 200 if item else 404
     
     def post(self, name):
-        if next(filter(lambda x: x['name'] == name, items), default=None) is not None:
+        if next(filter(lambda x: x['name'] == name, items), None) is not None:
             return {'message': "An item with name '{}' already exists".format(name)}, 400
         
         data = request.get_json()
